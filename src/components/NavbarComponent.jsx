@@ -4,11 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 import { useState } from 'react';
 import ModalInscription from './ModalInsciption.jsx';
-
+import ModalLogin from './ModalLogin.jsx';
 
 function NavBar() {
 
     const [openModalInscription, setOpenModalInscription] = useState(false);
+    const [openModalLogin, setOpenModalLogin] = useState(false);
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
     let userRole = '';
@@ -27,18 +28,20 @@ function NavBar() {
 
     // }
 
-    // const login = () => {
-
-    //     navigate('/login')
-
-    // }
-
     const handleInscription = () => {
         setOpenModalInscription(true);
     };
 
     const handleCloseModalInscription = () => {
         setOpenModalInscription(false);
+    };
+
+    const handleLogin = () => {
+        setOpenModalLogin(true);
+    };
+
+    const handleCloseModalLogin = () => {
+        setOpenModalLogin(false);
     };
 
 
@@ -56,7 +59,10 @@ function NavBar() {
 
                     <Nav className="me-auto">
 
-                        <Button color="inherit" onClick={handleInscription}>Inscription</Button>
+
+                        <NavLink onClick={handleInscription}>Inscription</NavLink>
+                        <NavLink onClick={handleLogin}>login</NavLink>
+                        <NavLink href="/profilPage">Profile</NavLink>
 
                         {/* {token ? (
                             <>
@@ -75,6 +81,7 @@ function NavBar() {
                         )} */}
 
                         <ModalInscription show={openModalInscription} onHide={handleCloseModalInscription} />
+                        <ModalLogin show={openModalLogin} onHide={handleCloseModalLogin} />
 
                     </Nav>
 

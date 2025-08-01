@@ -3,45 +3,34 @@ import Modal from 'react-bootstrap/Modal';
 import { useState } from 'react';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
-
+import { register } from '../service/clientService';
+import { useNavigate } from 'react-router-dom';
 
 
 
 
 function ModalInscription(props) {
 
-    const [clientData, setClientData] = useState({ Nom: "", Prenom: "", email: "", password: "", adresse: "", pays: "" });
-    const [validated, setValidated] = useState(false);
+    const [clientData, setClientData] = useState({ nom: "", prenom: "", email: "", password: "", adresse: "", pays: "", role: "1" });
+    const navigate = useNavigate();
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (e) => {
 
-        const form = event.currentTarget;
-
-        if (form.checkValidity() === false) {
-
-            event.preventDefault();
-            event.stopPropagation();
-
-        }
-
+        e.preventDefault();
+        
         try {
-
+            
             await register(clientData)
-            console.log(clientData);
-
             navigate('/Eternelles')
-
+            
             alert("Creation de compte employer")
-
+            
         } catch (error) {
 
             console.error(error);
 
         }
-
-        setValidated(true);
 
     };
 
@@ -62,7 +51,7 @@ function ModalInscription(props) {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                    <Form onSubmit={handleSubmit}>
                         <Row className="mb-3">
                             <Form.Group as={Col} md="4" controlId="validation">
                                 <Form.Label>Nom</Form.Label>

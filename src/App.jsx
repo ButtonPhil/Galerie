@@ -4,6 +4,7 @@ import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from './components/NavbarComponent.jsx';
 import EternellesPage from './page/EternellesPage.jsx';
+import TableauPage from './page/TableauxPage.jsx';
 
 
 
@@ -22,6 +23,7 @@ function app() {
                 <Routes>
 
                     <Route path='/Eternelles' element={< EternellesPage/>} />
+                    <Route path='/Tableau' element={<TableauPage />} />
 
                 </Routes>
 

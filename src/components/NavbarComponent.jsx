@@ -6,6 +6,8 @@ import { useState } from 'react';
 import ModalInscription from './ModalInsciption.jsx';
 import ModalLogin from './ModalLogin.jsx';
 
+
+
 function NavBar() {
 
     const [openModalInscription, setOpenModalInscription] = useState(false);
@@ -21,28 +23,48 @@ function NavBar() {
 
     }
 
-    // const logout = () => {
+    const logout = () => {
 
-    //     localStorage.removeItem('token');
-    //     navigate('/')
+        localStorage.removeItem('token');
+        navigate('/Eternelles')
 
-    // }
+    }
 
     const handleInscription = () => {
+
         setOpenModalInscription(true);
+
     };
 
     const handleCloseModalInscription = () => {
+
         setOpenModalInscription(false);
+
     };
 
     const handleLogin = () => {
+
         setOpenModalLogin(true);
+
     };
 
     const handleCloseModalLogin = () => {
+
         setOpenModalLogin(false);
+
     };
+
+    const handleGalerie = () => {
+
+        navigate('/Galerie');
+
+    }
+
+    const handleProflil = () => {
+
+        navigate('/Profile');
+
+    }
 
 
     return (
@@ -62,14 +84,11 @@ function NavBar() {
 
                         <NavLink onClick={handleInscription}>Inscription</NavLink>
                         <NavLink onClick={handleLogin}>login</NavLink>
-                        <NavLink href="/profilPage">Profile</NavLink>
+                        <NavLink onClick={handleGalerie}>Galerie</NavLink>
 
-                        {/* {token ? (
+                        {token ? (
                             <>
-
-                                <NavLink href="/profilPage">Profile</NavLink>
-                                <NavLink href="/EmployPage">Liste Employer</NavLink>
-                                <NavLink href="/ListProductsPage">Liste Produits</NavLink>
+                                <NavLink onClick={handleProflil}>Profile</NavLink>
                                 <Button variant='danger' onClick={logout}>Déconnexion</Button>
 
                             </>
@@ -78,7 +97,7 @@ function NavBar() {
 
                             <Button variant='primary' onClick={login}>Déconnexion</Button>
 
-                        )} */}
+                        )}
 
                         <ModalInscription show={openModalInscription} onHide={handleCloseModalInscription} />
                         <ModalLogin show={openModalLogin} onHide={handleCloseModalLogin} />

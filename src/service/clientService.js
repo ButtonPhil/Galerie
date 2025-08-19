@@ -18,10 +18,29 @@ export const getProfile = () => API.get('/profile', {
 
 });
 
+export const clientList = () => API.get('/client', {
+
+    headers: {
+
+        Authorization: `${localStorage.getItem('token')}`
+
+    }
+
+});
+
+export const deleteClient = (idClient) => API.delete(`/deleteClient/${idClient}`, {
+
+    headers: {
+
+        Authorization: `${localStorage.getItem('token')}`
+
+    }
+
+});
 
 
 
 
 
 
-export default {register, login};
+export default {register, login, getProfile, clientList, deleteClient};

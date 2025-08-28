@@ -4,6 +4,7 @@ import Figure from 'react-bootstrap/Figure';
 import { Button, ListGroup, Table } from "react-bootstrap";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from 'react-router-dom';
+// import ModalModifierClient from "../components/ModalModifierClient";
 
 
 
@@ -23,6 +24,8 @@ const ProfilePage = () => {
     const [admin, setAdmin] = useState(false);
 
     const token = localStorage.getItem('token');
+
+    const [openModalModifierClient, setOpenModalModifierClient] = useState(false);
 
 
     const fetchProfile = async (idClient) => {
@@ -53,6 +56,7 @@ const ProfilePage = () => {
         try {
 
             const response = await clientList();
+
             setClient(response.data.client);
             console.log(response.data);
 
@@ -81,6 +85,18 @@ const ProfilePage = () => {
         }
 
     }
+
+    const handleModifier = async (idClient) => {
+
+        setOpenModalModifierClient(true);
+
+    }
+
+    const handleCloseModalModifierClient = () => {
+
+        setOpenModalModifierClient(false);
+
+    };
 
     const handleAjout = () => {
 
@@ -175,6 +191,8 @@ const ProfilePage = () => {
                             <th>adresse</th>
                             <th>pays</th>
                             <th>email</th>
+                            <th>suppimer client</th>
+                            <th>modifier client</th>
 
                         </tr>
 
@@ -185,6 +203,7 @@ const ProfilePage = () => {
                         {client.map((client) => (
 
                             <tr key={client.idClient}>
+                                <td>{client.idClient}</td>
                                 <td>{client.nom}</td>
                                 <td>{client.prenom}</td>
                                 <td>{client.adresse}</td>
@@ -201,6 +220,16 @@ const ProfilePage = () => {
 
                                 </td>
 
+                                <td>
+
+                                    <Button variant="primary" onClick={() => handleModifier(client.idClient)}>
+
+                                        Modifier
+
+                                    </Button>
+
+                                </td>
+
                             </tr>
 
                         ))}
@@ -210,6 +239,8 @@ const ProfilePage = () => {
                 </Table>
 
             )}
+
+            {/* <ModalModifierClient show={openModalModifierClient} onHide={handleCloseModalModifierClient} /> */}
 
         </>
 

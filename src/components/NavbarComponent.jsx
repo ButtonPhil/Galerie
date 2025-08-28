@@ -95,7 +95,7 @@ function NavBar() {
 
                         ) : (
 
-                            <Button variant='primary' onClick={login}>Déconnexion</Button>
+                            <Button variant='primary' onClick={handleLogin}>Déconnexion</Button>
 
                         )}
 

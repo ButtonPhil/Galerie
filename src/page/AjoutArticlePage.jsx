@@ -6,7 +6,6 @@ import { InputLabel, NativeSelect } from "@mui/material";
 
 
 
-
 const AjoutArticlePage = () => {
 
     const [types, setTypes] = useState();
@@ -16,28 +15,27 @@ const AjoutArticlePage = () => {
 
         try {
 
-            await getType()
+            const response = await getType()
 
-            setTypes(data.nomCategorie)
-            setIdType(data.idCategorie)
+            setTypes(response.data.nomCategorie)
+            setIdType(response.data.idCategorie)
 
-            console.log(setTypes);
-            
+            console.log(response);
+
         } catch (error) {
 
-
+            console.error("Error recherche type", error);
 
         }
+
     }
 
-    useEffect(() => {
 
-        fetchType();
+useEffect (
 
-    }, []);
-
-
-
+    fetchType ()
+    
+)
 
     return (
 
@@ -59,17 +57,15 @@ const AjoutArticlePage = () => {
                         name: 'Categorie',
                         // id: 'uncontrolled-native',
 
-                    }}
+                    }}>
 
-                >
+                    {/* {types.map((type) => (
 
-                    {types.map((type) => (
+                        key = {idType},
 
-                        key = { idType } >
+                        <option type = {type} />
 
-                        <option type={type} />
-
-                    ))}
+                    ))} */}
 
                 </NativeSelect>
 
@@ -78,6 +74,13 @@ const AjoutArticlePage = () => {
         </>
 
     )
+
 }
+
+
+
+
+
+
 
 export default AjoutArticlePage;

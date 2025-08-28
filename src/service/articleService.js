@@ -4,7 +4,7 @@ import API from "./API.js";
 
 
 
-export const getType = () => API.get('/searchCategorie', {
+export const getType = () => API.get('/typeCategorie', {
 
     headers: {
 
@@ -13,3 +13,8 @@ export const getType = () => API.get('/searchCategorie', {
     }
 
 });
+
+
+
+
+export default getType ;

@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 
 function ModalInscription(props) {
 
-    const [clientData, setClientData] = useState({ nom: "", prenom: "", email: "", password: "", adresse: "", pays: "", role: "1" });
+    const [clientData, setClientData] = useState({ nom: "", prenom: "", email: "", password: "", adresse: "", pays: "", role: "0" });
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
